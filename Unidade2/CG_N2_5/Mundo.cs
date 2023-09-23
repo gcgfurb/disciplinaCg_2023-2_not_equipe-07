@@ -106,6 +106,7 @@ namespace gcgcg
                   #region Objeto: Circulo Menor
                   rotuloAtual = Utilitario.CharProximo(rotuloAtual);
                   circuloMenor = new Circulo(mundo, ref rotuloAtual, new Ponto4D(0, 0), 0.25);
+                  circuloMenor.shaderCor = new Shader("Shaders/shader.vert", "Shaders/shaderAmarela.frag");
                   #endregion
                   #region Objeto: Ponto
                   rotuloAtual = Utilitario.CharProximo(rotuloAtual);
@@ -114,6 +115,7 @@ namespace gcgcg
                   #region Objeto: Retangulo
                   rotuloAtual = Utilitario.CharProximo(rotuloAtual);
                   retangulo = new Retangulo(mundo, ref rotuloAtual, new Ponto4D(-0.35, -0.35), new Ponto4D(0.35, 0.35));
+                  retangulo.shaderCor = new Shader("Shaders/shader.vert", "Shaders/shaderVermelha.frag");
                   #endregion
 
 #if CG_Privado
