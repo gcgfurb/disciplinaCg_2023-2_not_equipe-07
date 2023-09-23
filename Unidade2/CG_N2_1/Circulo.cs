@@ -16,11 +16,6 @@ namespace gcgcg
                 base.PontosAdicionar(Matematica.GerarPtosCirculo(angulo, raio));
                 angulo += 35;
             }
-            Atualizar(ptoCentro);
-        }
-
-        private void Atualizar(Ponto4D ptoDeslocamento)
-        {
             base.ObjetoAtualizar();
         }
     }
