@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "G:\\BCC\\Computação Gráfica\\disciplinaCg_2023-2_not_equipe-07\\Unidade2\\CG_N2_3\\CG_N2_3.csproj": {}
+    "g:\\BCC\\Computação Gráfica\\disciplinaCg_2023-2_not_equipe-07\\Unidade2\\CG_N2_3\\CG_N2_3.csproj": {}
   },
   "projects": {
-    "G:\\BCC\\Computação Gráfica\\disciplinaCg_2023-2_not_equipe-07\\CG_Biblioteca\\CG_Biblioteca.csproj": {
+    "g:\\BCC\\Computação Gráfica\\disciplinaCg_2023-2_not_equipe-07\\CG_Biblioteca\\CG_Biblioteca.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\BCC\\Computação Gráfica\\disciplinaCg_2023-2_not_equipe-07\\CG_Biblioteca\\CG_Biblioteca.csproj",
+        "projectUniqueName": "g:\\BCC\\Computação Gráfica\\disciplinaCg_2023-2_not_equipe-07\\CG_Biblioteca\\CG_Biblioteca.csproj",
         "projectName": "CG_Biblioteca",
-        "projectPath": "G:\\BCC\\Computação Gráfica\\disciplinaCg_2023-2_not_equipe-07\\CG_Biblioteca\\CG_Biblioteca.csproj",
+        "projectPath": "g:\\BCC\\Computação Gráfica\\disciplinaCg_2023-2_not_equipe-07\\CG_Biblioteca\\CG_Biblioteca.csproj",
         "packagesPath": "C:\\Users\\Teste\\.nuget\\packages\\",
-        "outputPath": "G:\\BCC\\Computação Gráfica\\disciplinaCg_2023-2_not_equipe-07\\CG_Biblioteca\\obj\\",
+        "outputPath": "g:\\BCC\\Computação Gráfica\\disciplinaCg_2023-2_not_equipe-07\\CG_Biblioteca\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Teste\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -69,14 +69,14 @@
         }
       }
     },
-    "G:\\BCC\\Computação Gráfica\\disciplinaCg_2023-2_not_equipe-07\\Unidade2\\CG_N2_3\\CG_N2_3.csproj": {
+    "g:\\BCC\\Computação Gráfica\\disciplinaCg_2023-2_not_equipe-07\\Unidade2\\CG_N2_3\\CG_N2_3.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\BCC\\Computação Gráfica\\disciplinaCg_2023-2_not_equipe-07\\Unidade2\\CG_N2_3\\CG_N2_3.csproj",
+        "projectUniqueName": "g:\\BCC\\Computação Gráfica\\disciplinaCg_2023-2_not_equipe-07\\Unidade2\\CG_N2_3\\CG_N2_3.csproj",
         "projectName": "CG_N2_3",
-        "projectPath": "G:\\BCC\\Computação Gráfica\\disciplinaCg_2023-2_not_equipe-07\\Unidade2\\CG_N2_3\\CG_N2_3.csproj",
+        "projectPath": "g:\\BCC\\Computação Gráfica\\disciplinaCg_2023-2_not_equipe-07\\Unidade2\\CG_N2_3\\CG_N2_3.csproj",
         "packagesPath": "C:\\Users\\Teste\\.nuget\\packages\\",
-        "outputPath": "G:\\BCC\\Computação Gráfica\\disciplinaCg_2023-2_not_equipe-07\\Unidade2\\CG_N2_3\\obj\\",
+        "outputPath": "g:\\BCC\\Computação Gráfica\\disciplinaCg_2023-2_not_equipe-07\\Unidade2\\CG_N2_3\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Teste\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -93,8 +93,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "G:\\BCC\\Computação Gráfica\\disciplinaCg_2023-2_not_equipe-07\\CG_Biblioteca\\CG_Biblioteca.csproj": {
-                "projectPath": "G:\\BCC\\Computação Gráfica\\disciplinaCg_2023-2_not_equipe-07\\CG_Biblioteca\\CG_Biblioteca.csproj"
+              "g:\\BCC\\Computação Gráfica\\disciplinaCg_2023-2_not_equipe-07\\CG_Biblioteca\\CG_Biblioteca.csproj": {
+                "projectPath": "g:\\BCC\\Computação Gráfica\\disciplinaCg_2023-2_not_equipe-07\\CG_Biblioteca\\CG_Biblioteca.csproj"
               }
             }
           }
