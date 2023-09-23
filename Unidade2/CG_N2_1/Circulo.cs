@@ -18,5 +18,9 @@ namespace gcgcg
             }
             base.ObjetoAtualizar();
         }
+
+        private void Atualizar(Ponto4D ptoDeslocamento)
+        {
+        }
     }
 }
