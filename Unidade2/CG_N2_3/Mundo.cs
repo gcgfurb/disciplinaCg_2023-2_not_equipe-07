@@ -41,6 +41,11 @@ namespace gcgcg
 
             private int _totalEspaco = 1;
 
+            private bool posYnegX = false;
+            private bool posYposX = true;
+            private bool negYnegX = false;
+            private bool negYPosX = false;
+
             public Mundo(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings)
                    : base(gameWindowSettings, nativeWindowSettings)
             {
@@ -168,6 +173,39 @@ namespace gcgcg
                               else if (input.IsKeyPressed(Keys.S))
                               {
                                     objetoSelecionado.PontosAlterar(new Ponto4D(objetoSelecionado.PontosId(1).X - 0.010, objetoSelecionado.PontosId(1).Y - 0.010, 0), 1);
+                                    objetoSelecionado.ObjetoAtualizar();
+                              }
+                              else if (input.IsKeyPressed(Keys.Z))
+                              {
+                                    Console.WriteLine(objetoSelecionado.PontosId(1));
+                                    if (objetoSelecionado.PontosId(1).X >= objetoSelecionado.PontosId(0).X && objetoSelecionado.PontosId(1).Y <= objetoSelecionado.PontosId(0).Y) {
+                                          objetoSelecionado.PontosAlterar(new Ponto4D(objetoSelecionado.PontosId(1).X - 0.020, objetoSelecionado.PontosId(1).Y - 0.020, 0), 1);
+                                    }
+                                    else if (objetoSelecionado.PontosId(1).X <= objetoSelecionado.PontosId(0).X && objetoSelecionado.PontosId(1).Y <= objetoSelecionado.PontosId(0).Y) {
+                                          objetoSelecionado.PontosAlterar(new Ponto4D(objetoSelecionado.PontosId(1).X - 0.020, objetoSelecionado.PontosId(1).Y + 0.020, 0), 1);
+                                    }
+                                    else if (objetoSelecionado.PontosId(1).X <= objetoSelecionado.PontosId(0).X && objetoSelecionado.PontosId(1).Y >= objetoSelecionado.PontosId(0).Y) {
+                                          objetoSelecionado.PontosAlterar(new Ponto4D(objetoSelecionado.PontosId(1).X + 0.020, objetoSelecionado.PontosId(1).Y + 0.020, 0), 1);
+                                    }
+                                    else {
+                                          objetoSelecionado.PontosAlterar(new Ponto4D(objetoSelecionado.PontosId(1).X + 0.020, objetoSelecionado.PontosId(1).Y - 0.020, 0), 1);
+                                    }                                
+                                    objetoSelecionado.ObjetoAtualizar();
+                              }
+                              else if (input.IsKeyPressed(Keys.X))
+                              {
+                                    if (objetoSelecionado.PontosId(1).X < objetoSelecionado.PontosId(0).X && objetoSelecionado.PontosId(1).Y > objetoSelecionado.PontosId(0).Y) {
+                                          objetoSelecionado.PontosAlterar(new Ponto4D(objetoSelecionado.PontosId(1).X - 0.020, objetoSelecionado.PontosId(1).Y - 0.020, 0), 1);
+                                    } 
+                                    else if (objetoSelecionado.PontosId(1).X < objetoSelecionado.PontosId(0).X && objetoSelecionado.PontosId(1).Y < objetoSelecionado.PontosId(0).Y) {
+                                          objetoSelecionado.PontosAlterar(new Ponto4D(objetoSelecionado.PontosId(1).X + 0.020, objetoSelecionado.PontosId(1).Y - 0.020, 0), 1);
+                                    }
+                                    else if (objetoSelecionado.PontosId(1).X > objetoSelecionado.PontosId(0).X && objetoSelecionado.PontosId(1).Y < objetoSelecionado.PontosId(0).Y) {
+                                          objetoSelecionado.PontosAlterar(new Ponto4D(objetoSelecionado.PontosId(1).X + 0.020, objetoSelecionado.PontosId(1).Y + 0.020, 0), 1);
+                                    }
+                                    else {
+                                          objetoSelecionado.PontosAlterar(new Ponto4D(objetoSelecionado.PontosId(1).X - 0.020, objetoSelecionado.PontosId(1).Y + 0.020, 0), 1);
+                                    }
                                     objetoSelecionado.ObjetoAtualizar();
                               }
                         }

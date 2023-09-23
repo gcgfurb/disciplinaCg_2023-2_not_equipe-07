@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GKC6v+63V+mhzuCz6ATCXm/TcLq2Gt2yQtdSWjpfxdWPnLVUGx7thwXMvH8iu+zNU54KfozsUss0VQN9o8iZSg==",
+  "dgSpecHash": "L4jdpMtpMTjSdCW5yPaL3bf32xYKljXqRN33k02/HfHN9xEAa4bwVTFOKMHEZuG4YKNl7KRuIl2xEW7rVY5+LQ==",
   "success": true,
-  "projectFilePath": "g:\\BCC\\Computação Gráfica\\disciplinaCg_2023-2_not_equipe-07\\Unidade2\\CG_N2_3\\CG_N2_3.csproj",
+  "projectFilePath": "G:\\BCC\\Computação Gráfica\\disciplinaCg_2023-2_not_equipe-07\\Unidade2\\CG_N2_3\\CG_N2_3.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Teste\\.nuget\\packages\\opentk\\4.8.0\\opentk.4.8.0.nupkg.sha512",
     "C:\\Users\\Teste\\.nuget\\packages\\opentk.audio.openal\\4.8.0\\opentk.audio.openal.4.8.0.nupkg.sha512",
