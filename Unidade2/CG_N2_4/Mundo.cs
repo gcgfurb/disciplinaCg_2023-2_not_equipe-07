@@ -81,7 +81,14 @@ namespace gcgcg
 
                   rotuloAtual = Utilitario.CharProximo(rotuloAtual);
                   spline = new Spline(mundo, ref rotuloAtual);
-
+                  spline.SplineQtdPto(10);
+                  var listaPontos = new List<Ponto4D>();
+                  listaPontos.Add(ponto1);
+                  listaPontos.Add(ponto2);
+                  listaPontos.Add(ponto3);
+                  listaPontos.Add(ponto4);
+                  spline.setPontos(listaPontos);
+                  spline.DesenharObjeto();
             }
 
             private void SelecionarPonto(Ponto ponto)
@@ -96,6 +103,17 @@ namespace gcgcg
                   pontoSpline4.shaderCor = new Shader("Shaders/shader.vert", "Shaders/shaderBranca.frag");
                   ponto.shaderCor = new Shader("Shaders/shader.vert", "Shaders/shaderVermelha.frag");
                   pontoSplineSelecionado = ponto;
+            }
+            
+            private void Cima() {
+                  //altere o Y do ponto para cima
+                  pontoSplineSelecionado.PontosId(0).Y += 0.1;
+                  pontoSplineSelecionado.ObjetoAtualizar();
+
+            }
+
+            private void MoverPonto(Ponto ponto) {
+
             }
 
             private void Diretivas()
@@ -201,12 +219,8 @@ namespace gcgcg
                         {
                               spline.SplineQtdPto(10);
                         }
-                        // else if (e.Key == Key.D)
-                        //       Direita();
-                        // else if (e.Key == Key.C)
-                        // {
-                        //       Cima();
-                        // }
+                        else if (input.IsKeyDown(Keys.C))
+                              Cima();
                         // else if (e.Key == Key.B)
                         //       Baixo();
                         // if (input.IsKeyDown(Keys.Space)) {
