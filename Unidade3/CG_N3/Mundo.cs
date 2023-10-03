@@ -216,7 +216,7 @@ namespace gcgcg
         objetoSelecionado.shaderObjeto = _shaderAzul;
       }
 
-      if (input.IsKeyPressed(Keys.E)){
+      if (input.IsKeyPressed(Keys.E) && objetoSelecionado != null){
         int janelaLargura = Size.X;
         int janelaAltura = Size.Y;
         Ponto4D mousePonto = new Ponto4D(MousePosition.X, MousePosition.Y);
@@ -236,6 +236,27 @@ namespace gcgcg
         }
 
         objetoSelecionado.PontosRemover(id_ponto);
+      }
+
+      if (input.IsKeyPressed(Keys.V) && objetoSelecionado != null) {
+        int janelaLargura = Size.X;
+        int janelaAltura = Size.Y;
+        Ponto4D mousePonto = new Ponto4D(MousePosition.X, MousePosition.Y);
+        Ponto4D sruPonto = Utilitario.NDC_TelaSRU(janelaLargura, janelaAltura, mousePonto);
+
+        List<Ponto4D> listaPontos = objetoSelecionado.GetPontosObjeto();
+        Ponto4D pontoProximo = listaPontos[0];
+
+        double distancia = Math.Sqrt((Math.Pow((pontoProximo.X - sruPonto.X),2)) + (Math.Pow((pontoProximo.Y - sruPonto.Y),2)));
+        int id_ponto = 0;
+        for (int i = 0; i < listaPontos.Count; i++){
+          double calcTemp = Math.Sqrt((Math.Pow((listaPontos[i].X - sruPonto.X),2)) + (Math.Pow((listaPontos[i].Y - sruPonto.Y),2)));
+          if (calcTemp < distancia){
+            distancia = calcTemp;
+            id_ponto = i;
+          }
+        }
+        objetoSelecionado.PontosAlterar(sruPonto, id_ponto);
       }
 
       if (input.IsKeyPressed(Keys.M) && objetoSelecionado != null)
@@ -280,8 +301,6 @@ namespace gcgcg
       }
       if (MouseState.IsButtonDown(MouseButton.Right) && objetoSelecionado != null)
       {
-        System.Console.WriteLine("MouseState.IsButtonDown(MouseButton.Right)");
-
         int janelaLargura = Size.X;
         int janelaAltura = Size.Y;
         Ponto4D mousePonto = new Ponto4D(MousePosition.X, MousePosition.Y);

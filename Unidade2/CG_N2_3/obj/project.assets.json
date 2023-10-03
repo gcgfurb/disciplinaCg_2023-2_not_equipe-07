@@ -456,34 +456,32 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Teste\\.nuget\\packages\\": {}
+    "C:\\Users\\rdullius\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\BCC\\Computação Gráfica\\disciplinaCg_2023-2_not_equipe-07\\Unidade2\\CG_N2_3\\CG_N2_3.csproj",
+      "projectUniqueName": "C:\\Users\\rdullius\\Computação Gráfica\\disciplinaCg_2023-2_not_equipe-07\\Unidade2\\CG_N2_3\\CG_N2_3.csproj",
       "projectName": "CG_N2_3",
-      "projectPath": "G:\\BCC\\Computação Gráfica\\disciplinaCg_2023-2_not_equipe-07\\Unidade2\\CG_N2_3\\CG_N2_3.csproj",
-      "packagesPath": "C:\\Users\\Teste\\.nuget\\packages\\",
-      "outputPath": "G:\\BCC\\Computação Gráfica\\disciplinaCg_2023-2_not_equipe-07\\Unidade2\\CG_N2_3\\obj\\",
+      "projectPath": "C:\\Users\\rdullius\\Computação Gráfica\\disciplinaCg_2023-2_not_equipe-07\\Unidade2\\CG_N2_3\\CG_N2_3.csproj",
+      "packagesPath": "C:\\Users\\rdullius\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\rdullius\\Computação Gráfica\\disciplinaCg_2023-2_not_equipe-07\\Unidade2\\CG_N2_3\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Teste\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\rdullius\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "G:\\BCC\\Computação Gráfica\\disciplinaCg_2023-2_not_equipe-07\\CG_Biblioteca\\CG_Biblioteca.csproj": {
-              "projectPath": "G:\\BCC\\Computação Gráfica\\disciplinaCg_2023-2_not_equipe-07\\CG_Biblioteca\\CG_Biblioteca.csproj"
+            "C:\\Users\\rdullius\\Computação Gráfica\\disciplinaCg_2023-2_not_equipe-07\\CG_Biblioteca\\CG_Biblioteca.csproj": {
+              "projectPath": "C:\\Users\\rdullius\\Computação Gráfica\\disciplinaCg_2023-2_not_equipe-07\\CG_Biblioteca\\CG_Biblioteca.csproj"
             }
           }
         }
@@ -519,7 +517,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }
