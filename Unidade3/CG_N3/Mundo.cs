@@ -101,21 +101,21 @@ namespace gcgcg
       #endregion
 
       #region Objeto: polígono qualquer  
-      // List<Ponto4D> pontosPoligonoBandeira = new List<Ponto4D>();
-      // pontosPoligonoBandeira.Add(new Ponto4D(0.25, 0.25));
-      // pontosPoligonoBandeira.Add(new Ponto4D(0.75, 0.25));
-      // pontosPoligonoBandeira.Add(new Ponto4D(0.75, 0.75));
-      // pontosPoligonoBandeira.Add(new Ponto4D(0.50, 0.50));
-      // pontosPoligonoBandeira.Add(new Ponto4D(0.25, 0.75));
-      // objetoSelecionado = new Poligono(mundo, ref rotuloNovo, pontosPoligonoBandeira);
+      List<Ponto4D> pontosPoligonoBandeira = new List<Ponto4D>();
+      pontosPoligonoBandeira.Add(new Ponto4D(0.25, 0.25));
+      pontosPoligonoBandeira.Add(new Ponto4D(0.75, 0.25));
+      pontosPoligonoBandeira.Add(new Ponto4D(0.75, 0.75));
+      pontosPoligonoBandeira.Add(new Ponto4D(0.50, 0.50));
+      pontosPoligonoBandeira.Add(new Ponto4D(0.25, 0.75));
+      objetoSelecionado = new Poligono(mundo, ref rotuloNovo, pontosPoligonoBandeira);
       #endregion
-      // #region declara um objeto filho ao polígono
-      // List<Ponto4D> pontosPoligonoTriangulo = new List<Ponto4D>();
-      // pontosPoligonoTriangulo.Add(new Ponto4D(0.50, 0.50));
-      // pontosPoligonoTriangulo.Add(new Ponto4D(0.75, 0.75));
-      // pontosPoligonoTriangulo.Add(new Ponto4D(0.25, 0.75));
-      // objetoSelecionado = new Poligono(objetoSelecionado, ref rotuloNovo, pontosPoligonoTriangulo);
-      // #endregion
+      #region declara um objeto filho ao polígono
+      List<Ponto4D> pontosPoligonoTriangulo = new List<Ponto4D>();
+      pontosPoligonoTriangulo.Add(new Ponto4D(0.50, 0.50));
+      pontosPoligonoTriangulo.Add(new Ponto4D(0.75, 0.75));
+      pontosPoligonoTriangulo.Add(new Ponto4D(0.25, 0.75));
+      objetoSelecionado = new Poligono(objetoSelecionado, ref rotuloNovo, pontosPoligonoTriangulo);
+      #endregion
 #if CG_Privado
       #region declara um objeto neto ao polígono
       objetoSelecionado = new Circulo(objetoSelecionado, ref rotuloNovo, 0.05, new Ponto4D(0.50, 0.50));
@@ -195,8 +195,17 @@ namespace gcgcg
 
       if (input.IsKeyPressed(Keys.G))
         mundo.GrafocenaImprimir("");
-      if (input.IsKeyPressed(Keys.P) && objetoSelecionado != null)
-        System.Console.WriteLine(objetoSelecionado.ToString());
+
+      if (input.IsKeyPressed(Keys.R) && objetoSelecionado != null) {
+        objetoSelecionado.shaderObjeto = _shaderVermelha;
+      }
+      if (input.IsKeyPressed(Keys.G) && objetoSelecionado != null) {
+        objetoSelecionado.shaderObjeto = _shaderVerde;
+      }
+      if (input.IsKeyPressed(Keys.B) && objetoSelecionado != null) {
+        objetoSelecionado.shaderObjeto = _shaderAzul;
+      }
+
       if (input.IsKeyPressed(Keys.M) && objetoSelecionado != null)
         objetoSelecionado.MatrizImprimir();
       //TODO: não está atualizando a BBox com as transformações geométricas
