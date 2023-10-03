@@ -100,22 +100,22 @@ namespace gcgcg
       GL.EnableVertexAttribArray(0);
       #endregion
 
-      #region Objeto: polígono qualquer  
-      List<Ponto4D> pontosPoligonoBandeira = new List<Ponto4D>();
-      pontosPoligonoBandeira.Add(new Ponto4D(0.25, 0.25));
-      pontosPoligonoBandeira.Add(new Ponto4D(0.75, 0.25));
-      pontosPoligonoBandeira.Add(new Ponto4D(0.75, 0.75));
-      pontosPoligonoBandeira.Add(new Ponto4D(0.50, 0.50));
-      pontosPoligonoBandeira.Add(new Ponto4D(0.25, 0.75));
-      objetoSelecionado = new Poligono(mundo, ref rotuloNovo, pontosPoligonoBandeira);
-      #endregion
-      #region declara um objeto filho ao polígono
-      List<Ponto4D> pontosPoligonoTriangulo = new List<Ponto4D>();
-      pontosPoligonoTriangulo.Add(new Ponto4D(0.50, 0.50));
-      pontosPoligonoTriangulo.Add(new Ponto4D(0.75, 0.75));
-      pontosPoligonoTriangulo.Add(new Ponto4D(0.25, 0.75));
-      objetoSelecionado = new Poligono(objetoSelecionado, ref rotuloNovo, pontosPoligonoTriangulo);
-      #endregion
+      // #region Objeto: polígono qualquer  
+      // List<Ponto4D> pontosPoligonoBandeira = new List<Ponto4D>();
+      // pontosPoligonoBandeira.Add(new Ponto4D(0.25, 0.25));
+      // pontosPoligonoBandeira.Add(new Ponto4D(0.75, 0.25));
+      // pontosPoligonoBandeira.Add(new Ponto4D(0.75, 0.75));
+      // pontosPoligonoBandeira.Add(new Ponto4D(0.50, 0.50));
+      // pontosPoligonoBandeira.Add(new Ponto4D(0.25, 0.75));
+      // objetoSelecionado = new Poligono(mundo, ref rotuloNovo, pontosPoligonoBandeira);
+      // #endregion
+      // #region declara um objeto filho ao polígono
+      // List<Ponto4D> pontosPoligonoTriangulo = new List<Ponto4D>();
+      // pontosPoligonoTriangulo.Add(new Ponto4D(0.50, 0.50));
+      // pontosPoligonoTriangulo.Add(new Ponto4D(0.75, 0.75));
+      // pontosPoligonoTriangulo.Add(new Ponto4D(0.25, 0.75));
+      // objetoSelecionado = new Poligono(objetoSelecionado, ref rotuloNovo, pontosPoligonoTriangulo);
+      // #endregion
 #if CG_Privado
       #region declara um objeto neto ao polígono
       objetoSelecionado = new Circulo(objetoSelecionado, ref rotuloNovo, 0.05, new Ponto4D(0.50, 0.50));
@@ -195,6 +195,16 @@ namespace gcgcg
 
       if (input.IsKeyPressed(Keys.G))
         mundo.GrafocenaImprimir("");
+      // Colocando linha amarela
+      if (input.IsKeyPressed(Keys.P) && objetoSelecionado != null) {
+
+        if (objetoSelecionado.PrimitivaTipo == PrimitiveType.LineStrip) {
+          objetoSelecionado.PrimitivaTipo = PrimitiveType.LineLoop;
+        } else {
+          objetoSelecionado.PrimitivaTipo = PrimitiveType.LineStrip;
+        }
+        System.Console.WriteLine(objetoSelecionado.ToString());
+      }
 
       if (input.IsKeyPressed(Keys.R) && objetoSelecionado != null) {
         objetoSelecionado.shaderObjeto = _shaderVermelha;
@@ -204,6 +214,28 @@ namespace gcgcg
       }
       if (input.IsKeyPressed(Keys.B) && objetoSelecionado != null) {
         objetoSelecionado.shaderObjeto = _shaderAzul;
+      }
+
+      if (input.IsKeyPressed(Keys.E)){
+        int janelaLargura = Size.X;
+        int janelaAltura = Size.Y;
+        Ponto4D mousePonto = new Ponto4D(MousePosition.X, MousePosition.Y);
+        Ponto4D sruPonto = Utilitario.NDC_TelaSRU(janelaLargura, janelaAltura, mousePonto);
+
+        List<Ponto4D> listaPontos = objetoSelecionado.GetPontosObjeto();
+        Ponto4D pontoProximo = listaPontos[0];
+
+        double distancia = Math.Sqrt((Math.Pow((pontoProximo.X - sruPonto.X),2)) + (Math.Pow((pontoProximo.Y - sruPonto.Y),2)));
+        int id_ponto = 0;
+        for (int i = 0; i < listaPontos.Count; i++){
+          double calcTemp = Math.Sqrt((Math.Pow((listaPontos[i].X - sruPonto.X),2)) + (Math.Pow((listaPontos[i].Y - sruPonto.Y),2)));
+          if (calcTemp < distancia){
+            distancia = calcTemp;
+            id_ponto = i;
+          }
+        }
+
+        objetoSelecionado.PontosRemover(id_ponto);
       }
 
       if (input.IsKeyPressed(Keys.M) && objetoSelecionado != null)

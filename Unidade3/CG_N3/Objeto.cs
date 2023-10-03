@@ -132,6 +132,17 @@ namespace gcgcg
       if (filho.rotulo != '@') this.objetosLista.Remove(filho);
     }
 
+    public void PontosRemover(int posicao)
+    {
+      pontosLista.RemoveAt(posicao);
+      ObjetoAtualizar();
+    }
+
+    public List<Ponto4D> GetPontosObjeto()
+    {
+      return pontosLista;
+    }
+
     public Ponto4D PontosId(int id)
     {
       return pontosLista[id];
