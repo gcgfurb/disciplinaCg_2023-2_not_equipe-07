@@ -11,6 +11,7 @@ using OpenTK.Windowing.Desktop;
 using System;
 using OpenTK.Mathematics;
 using System.Collections.Generic;
+using System.Linq;
 
 //FIXME: padrão Singleton
 
@@ -42,6 +43,8 @@ namespace gcgcg
     private Shader _shaderCiano;
     private Shader _shaderMagenta;
     private Shader _shaderAmarela;
+    private bool isDesenhando;
+    List<Ponto4D> pontosPoligonoNovo = new List<Ponto4D>();
 
     public Mundo(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings)
            : base(gameWindowSettings, nativeWindowSettings)
@@ -124,8 +127,8 @@ namespace gcgcg
 #endif
 
       #region Objeto: retângulo  
-      objetoSelecionado = new Retangulo(mundo, ref rotuloNovo, new Ponto4D(-0.25, 0.25), new Ponto4D(-0.75, 0.75));
-      objetoSelecionado.PrimitivaTipo = PrimitiveType.LineLoop;
+      // objetoSelecionado = new Retangulo(mundo, ref rotuloNovo, new Ponto4D(-0.25, 0.25), new Ponto4D(-0.75, 0.75));
+      // objetoSelecionado.PrimitivaTipo = PrimitiveType.LineLoop;
       #endregion
 
       // #region Objeto: segmento de reta  
@@ -299,6 +302,48 @@ namespace gcgcg
         System.Console.WriteLine("Vector2 mousePosition: " + MousePosition);
         System.Console.WriteLine("Vector2i windowSize: " + Size);
       }
+
+      // if (MouseState.IsButtonReleased(MouseButton.Right)) {
+      //   // int janelaLargura = Size.X;
+      //   // int janelaAltura = Size.Y;
+      //   // Ponto4D mousePonto = new Ponto4D(MousePosition.X, MousePosition.Y);
+      //   // Ponto4D sruPonto = Utilitario.NDC_TelaSRU(janelaLargura, janelaAltura, mousePonto);
+      //   // pontosPoligonoNovo.Add(new Ponto4D(-0.25, 0.25));  
+      //   // pontosPoligonoNovo.Add(new Ponto4D(-0.75, 0.75));
+
+      //   // if (!isDesenhando) {
+      //   //   objetoSelecionado = new Poligono(mundo, ref rotuloNovo, pontosPoligonoNovo);
+      //   //   isDesenhando = true;
+      //   // }
+      //   // else {
+      //   //   objetoSelecionado.PontosAdicionar(sruPonto);
+      //   // }
+      // }
+      if (input.IsKeyPressed(Keys.Enter)) {
+          isDesenhando = false;
+          // objetoSelecionado = new Poligono(mundo, ref rotuloNovo, pontosPoligonoNovo);
+          pontosPoligonoNovo = new List<Ponto4D>();
+      }
+
+      if (MouseState.IsButtonPressed(MouseButton.Right)) {
+        int janelaLargura = Size.X;
+        int janelaAltura = Size.Y;
+        Ponto4D mousePonto = new Ponto4D(MousePosition.X, MousePosition.Y);
+        Ponto4D sruPonto = Utilitario.NDC_TelaSRU(janelaLargura, janelaAltura, mousePonto);
+        pontosPoligonoNovo.Add(sruPonto);  
+        pontosPoligonoNovo.Add(sruPonto);
+
+        if (!isDesenhando) {
+          objetoSelecionado = new Poligono(mundo, ref rotuloNovo, pontosPoligonoNovo);
+          isDesenhando = true;
+        }
+
+        // if (pontosPoligonoNovo.Count > 0) {
+        //   objetoSelecionado.PontosAlterar(sruPonto, pontosPoligonoNovo.Count - 1);
+        //   Console.WriteLine("Tetse");
+        // }
+      }
+
       if (MouseState.IsButtonDown(MouseButton.Right) && objetoSelecionado != null)
       {
         int janelaLargura = Size.X;
@@ -308,10 +353,10 @@ namespace gcgcg
 
         objetoSelecionado.PontosAlterar(sruPonto, 0);
       }
-      if (MouseState.IsButtonReleased(MouseButton.Right))
-      {
-        System.Console.WriteLine("MouseState.IsButtonReleased(MouseButton.Right)");
-      }
+      // if (MouseState.IsButtonReleased(MouseButton.Right))
+      // {
+      //   System.Console.WriteLine("MouseState.IsButtonReleased(MouseButton.Right)");
+      // }
 
       #endregion
 
