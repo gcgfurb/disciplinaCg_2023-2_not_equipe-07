@@ -59,6 +59,56 @@ namespace gcgcg
       }
     }
 
+    public Objeto VerificaBBox(Ponto4D pto)
+    {
+        foreach (var objeto in objetosLista)
+        {
+            if (pto.X > objeto.bBox.obterMenorX && pto.X < objeto.bBox.obterMaiorX)
+            {
+                if (pto.Y > objeto.bBox.obterMenorY && pto.Y < objeto.bBox.obterMaiorY)
+                {
+                    return objeto;
+                }
+            }
+        }
+        return null;
+    }
+
+
+   public bool ScanLine (Ponto4D pontoMouse)
+    {
+      int i = 1; 
+      
+      int count =0; 
+      
+      foreach (var pto in pontosLista)
+      {
+        var ti =((pontoMouse.Y - pto.Y) / (pontosLista[i].Y - pto.Y));
+        Console.WriteLine("ti" + ti);
+        if (ti >=0 && ti <= 1)
+        {
+          var xi = (pto.X +(pontosLista[i].X - pto.X) * ti);
+          Console.WriteLine("xi" + xi);
+          if (xi > pontoMouse.X)
+          {
+            count++;
+          }
+        }
+        i++;
+        Console.WriteLine("i" + i);
+        if (i == pontosLista.Count)
+        {
+          i=0;
+        }
+      }
+      if (count % 2 == 0) 
+      {
+        return true;
+        
+      }
+      return false;
+    }
+
     private void ObjetoAdicionar(Objeto objetoFilho)
     {
       if (objetoFilho == null)
