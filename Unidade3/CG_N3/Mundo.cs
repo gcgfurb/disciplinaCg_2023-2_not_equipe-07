@@ -295,13 +295,42 @@ namespace gcgcg
 
       #region  Mouse
 
-      if (MouseState.IsButtonPressed(MouseButton.Left))
-      {
-        System.Console.WriteLine("MouseState.IsButtonPressed(MouseButton.Left)");
-        System.Console.WriteLine("__ Valores do Espaço de Tela");
-        System.Console.WriteLine("Vector2 mousePosition: " + MousePosition);
-        System.Console.WriteLine("Vector2i windowSize: " + Size);
-      }
+      if (MouseState.IsButtonPressed(MouseButton.Left)) {
+        
+            int janelaLargura = Size.X;
+            int janelaAltura = Size.Y;
+            Ponto4D mousePonto = new Ponto4D(MousePosition.X, MousePosition.Y);
+            Ponto4D sruPonto = Utilitario.NDC_TelaSRU(janelaLargura, janelaAltura, mousePonto);
+            Objeto verificaObj= mundo.VerificaBBox(sruPonto);
+            objetoSelecionado=verificaObj;
+
+        
+            if (objetoSelecionado==null) {
+            
+              Console.WriteLine("A");   
+            }
+            else 
+              {
+              bool dentro =verificaObj.ScanLine(sruPonto); 
+              Console.WriteLine(dentro);
+              if (dentro==false)
+                {
+              objetoSelecionado= null;
+                Console.WriteLine("b");
+                }
+                else 
+                {
+                  objetoSelecionado=verificaObj;
+                  
+
+                  objetoSelecionado.Bbox();
+                  
+                                
+                Console.WriteLine("c");
+                }
+              }
+        }
+
 
       // if (MouseState.IsButtonReleased(MouseButton.Right)) {
       //   // int janelaLargura = Size.X;
@@ -321,6 +350,7 @@ namespace gcgcg
       // }
       if (input.IsKeyPressed(Keys.Enter)) {
           isDesenhando = false;
+          objetoSelecionado = null;
           // objetoSelecionado = new Poligono(mundo, ref rotuloNovo, pontosPoligonoNovo);
           pontosPoligonoNovo = new List<Ponto4D>();
       }
@@ -333,8 +363,14 @@ namespace gcgcg
         pontosPoligonoNovo.Add(sruPonto);  
         pontosPoligonoNovo.Add(sruPonto);
 
-        if (!isDesenhando) {
+        if (!isDesenhando && objetoSelecionado == null) {
           objetoSelecionado = new Poligono(mundo, ref rotuloNovo, pontosPoligonoNovo);
+          isDesenhando = true;
+        }
+        else if (!isDesenhando && objetoSelecionado != null)
+        {
+          var objeto = new Poligono(objetoSelecionado, ref rotuloNovo, pontosPoligonoNovo);
+          objetoSelecionado = objeto;
           isDesenhando = true;
         }
 
@@ -350,9 +386,11 @@ namespace gcgcg
         int janelaAltura = Size.Y;
         Ponto4D mousePonto = new Ponto4D(MousePosition.X, MousePosition.Y);
         Ponto4D sruPonto = Utilitario.NDC_TelaSRU(janelaLargura, janelaAltura, mousePonto);
-
+        
         objetoSelecionado.PontosAlterar(sruPonto, 0);
       }
+
+      
       // if (MouseState.IsButtonReleased(MouseButton.Right))
       // {
       //   System.Console.WriteLine("MouseState.IsButtonReleased(MouseButton.Right)");
