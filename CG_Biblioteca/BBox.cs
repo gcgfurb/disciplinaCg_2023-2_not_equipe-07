@@ -2,6 +2,7 @@
 #define CG_Gizmo  // debugar gráfico.
 #define CG_OpenGL // render OpenGL.
 
+using System;
 using System.Collections.Generic;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
@@ -78,9 +79,24 @@ namespace CG_Biblioteca
     /// Verifica se um ponto está dentro da BBox.
     public bool Dentro(Ponto4D pto)
     {
-      if ((pto.X >= obterMenorX && pto.X <= obterMaiorX) &&
-          (pto.Y >= obterMenorY && pto.Y <= obterMaiorY) &&
-          (pto.Z >= obterMenorZ && pto.Z <= obterMaiorZ))
+      var roundMaiorX = Math.Round(obterMaiorX, 1);
+      var roundMenorX = Math.Round(obterMenorX, 1);
+
+      var roundMaiorY = Math.Round(obterMaiorY, 1);
+      var roundMenorY = Math.Round(obterMenorY, 1);
+
+      var roundPtoX = Math.Round(pto.X, 1);
+      var roundPtoY = Math.Round(pto.Y, 1);
+
+      // Console.WriteLine("roundMaiorX" + roundMaiorX);
+      // Console.WriteLine("roundMaiorY" + roundMaiorY);
+      // Console.WriteLine("roundMenorX" + roundMenorX);
+      // Console.WriteLine("roundMenorY" + roundMenorY);
+      // Console.WriteLine("roundPtoX" + roundPtoX);
+      // Console.WriteLine("roundPtoY" + roundPtoY);
+
+      if ((roundPtoX >= roundMenorX && roundPtoX <= roundMaiorX) &&
+          (roundPtoY >= roundMenorY && roundPtoY <= roundMaiorY))
       {
         return true;
       }
