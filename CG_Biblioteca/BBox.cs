@@ -33,6 +33,7 @@ namespace CG_Biblioteca
     public void Atualizar(Transformacao4D matriz, List<Ponto4D> pontosLista)
     {
       Ponto4D pto = pontosLista[0];
+      pto = matriz.MultiplicarPonto(pto);
 
       this.menorX = pto.X; this.menorY = pto.Y; this.menorZ = pto.Z;
       this.maiorX = pto.X; this.maiorY = pto.Y; this.maiorZ = pto.Z;
@@ -40,6 +41,8 @@ namespace CG_Biblioteca
       for (var i = 1; i < pontosLista.Count; i++)
       {
         pto = pontosLista[i];
+        pto = matriz.MultiplicarPonto(pto);
+
         Atualizar(matriz, pto);
       }
 
@@ -48,6 +51,7 @@ namespace CG_Biblioteca
 
     private void Atualizar(Transformacao4D matriz, Ponto4D pto)
     {
+
       if (pto.X < menorX)
         menorX = pto.X;
       else
@@ -79,24 +83,31 @@ namespace CG_Biblioteca
     /// Verifica se um ponto está dentro da BBox.
     public bool Dentro(Ponto4D pto)
     {
-      var roundMaiorX = Math.Round(obterMaiorX, 1);
-      var roundMenorX = Math.Round(obterMenorX, 1);
+      // var roundMaiorX = Math.Round(obterMaiorX, 1);
+      // var roundMenorX = Math.Round(obterMenorX, 1);
 
-      var roundMaiorY = Math.Round(obterMaiorY, 1);
-      var roundMenorY = Math.Round(obterMenorY, 1);
+      // var roundMaiorY = Math.Round(obterMaiorY, 1);
+      // var roundMenorY = Math.Round(obterMenorY, 1);
 
-      var roundPtoX = Math.Round(pto.X, 1);
-      var roundPtoY = Math.Round(pto.Y, 1);
+      // var roundPtoX = Math.Round(pto.X, 1);
+      // var roundPtoY = Math.Round(pto.Y, 1);
 
-      // Console.WriteLine("roundMaiorX" + roundMaiorX);
-      // Console.WriteLine("roundMaiorY" + roundMaiorY);
-      // Console.WriteLine("roundMenorX" + roundMenorX);
-      // Console.WriteLine("roundMenorY" + roundMenorY);
-      // Console.WriteLine("roundPtoX" + roundPtoX);
-      // Console.WriteLine("roundPtoY" + roundPtoY);
+      // // Console.WriteLine("roundMaiorX" + roundMaiorX);
+      // // Console.WriteLine("roundMaiorY" + roundMaiorY);
+      // // Console.WriteLine("roundMenorX" + roundMenorX);
+      // // Console.WriteLine("roundMenorY" + roundMenorY);
+      // // Console.WriteLine("roundPtoX" + roundPtoX);
+      // // Console.WriteLine("roundPtoY" + roundPtoY);
 
-      if ((roundPtoX >= roundMenorX && roundPtoX <= roundMaiorX) &&
-          (roundPtoY >= roundMenorY && roundPtoY <= roundMaiorY))
+      // if ((roundPtoX >= roundMenorX && roundPtoX <= roundMaiorX) &&
+      //     (roundPtoY >= roundMenorY && roundPtoY <= roundMaiorY))
+      // {
+      //   return true;
+      // }
+      // return false;
+      if ((pto.X >= obterMenorX && pto.X <= obterMaiorX) &&
+          (pto.Y >= obterMenorY && pto.Y <= obterMaiorY) &&
+          (pto.Z >= obterMenorZ && pto.Z <= obterMaiorZ))
       {
         return true;
       }

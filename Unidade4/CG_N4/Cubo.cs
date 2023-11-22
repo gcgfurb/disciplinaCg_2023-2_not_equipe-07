@@ -22,14 +22,14 @@ namespace gcgcg
 
       vertices = new Ponto4D[]
       {
-        new Ponto4D(-1.0f, -1.0f,  1.0f),
-        new Ponto4D( 1.0f, -1.0f,  1.0f),
-        new Ponto4D( 1.0f,  1.0f,  1.0f),
-        new Ponto4D(-1.0f,  1.0f,  1.0f),
-        new Ponto4D(-1.0f, -1.0f, -1.0f),
-        new Ponto4D( 1.0f, -1.0f, -1.0f),
-        new Ponto4D( 1.0f,  1.0f, -1.0f),
-        new Ponto4D(-1.0f,  1.0f, -1.0f)
+        new Ponto4D(-0.2f, -0.2f,  0.2f),
+        new Ponto4D( 0.2f, -0.2f,  0.2f),
+        new Ponto4D( 0.2f,  0.2f,  0.2f),
+        new Ponto4D(-0.2f,  0.2f,  0.2f),
+        new Ponto4D(-0.2f, -0.2f, -0.2f),
+        new Ponto4D( 0.2f, -0.2f, -0.2f),
+        new Ponto4D( 0.2f,  0.2f, -0.2f),
+        new Ponto4D(-0.2f,  0.2f, -0.2f)
       };
 
       // // 0, 1, 2, 3 Face da frente

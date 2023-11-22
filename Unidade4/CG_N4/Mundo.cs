@@ -109,30 +109,10 @@ namespace gcgcg
       GL.EnableVertexAttribArray(0);
       #endregion
 
-      // #region Objeto: polígono qualquer  
-      // List<Ponto4D> pontosPoligonoBandeira = new List<Ponto4D>();
-      // pontosPoligonoBandeira.Add(new Ponto4D(0.25, 0.25));
-      // pontosPoligonoBandeira.Add(new Ponto4D(0.75, 0.25));
-      // pontosPoligonoBandeira.Add(new Ponto4D(0.75, 0.75));
-      // pontosPoligonoBandeira.Add(new Ponto4D(0.50, 0.50));
-      // pontosPoligonoBandeira.Add(new Ponto4D(0.25, 0.75));
-      // objetoSelecionado = new Poligono(mundo, ref rotuloNovo, pontosPoligonoBandeira);
-      // #endregion
-      // #region declara um objeto filho ao polígono qualquer
-      // List<Ponto4D> pontosPoligonoTriangulo = new List<Ponto4D>();
-      // pontosPoligonoTriangulo.Add(new Ponto4D(0.50, 0.50));
-      // pontosPoligonoTriangulo.Add(new Ponto4D(0.75, 0.75));
-      // pontosPoligonoTriangulo.Add(new Ponto4D(0.25, 0.75));
-      // objetoSelecionado = new Poligono(objetoSelecionado, ref rotuloNovo, pontosPoligonoTriangulo);
-      // objetoSelecionado.PrimitivaTipo = PrimitiveType.Triangles;
-      // #endregion
-
       #region Objeto: Carro - Retangulo
-      objetoSelecionado = new Ponto(mundo, ref rotuloNovo, new Ponto4D(-0.5,-0.5));
-      // #region Objeto: Cubo
-      // objetoSelecionado = new Cubo(mundo, ref rotuloNovo);
+      objetoSelecionado = new Cubo(mundo, ref rotuloNovo);
+
       #endregion
-      // new Ponto(mundo, ref rotuloObstaculo, new Ponto4D(0, 1));
       _camera = new Camera(Vector3.UnitZ*5, Size.X / (float)Size.Y);
 
     }
@@ -151,6 +131,17 @@ namespace gcgcg
       SwapBuffers();
     }
 
+    private void RemoverDoMundo() {
+      for (var i = 0; i < obstaculos.Count; i++) {
+        var obstaculo = obstaculos[i];
+        if (objetoSelecionado.Bbox().Dentro(obstaculo.PontosId(0))) {
+          objetoSelecionado.MatrizEscalaXYZ(1.0002, 1.0002, 1.0002);
+          mundo.RemoverFilho(obstaculo);
+          break;
+        }
+      }
+    }
+
     protected override void OnUpdateFrame(FrameEventArgs e)
     {
       base.OnUpdateFrame(e);
@@ -161,32 +152,27 @@ namespace gcgcg
       if (input.IsKeyDown(Keys.Escape))
         Close();
 
-      if (input.IsKeyDown(Keys.A)) {
-        if (objetoSelecionado != null) {
-          objetoSelecionado.PontosAlterar(new Ponto4D(objetoSelecionado.PontosId(0).X - 0.0010, objetoSelecionado.PontosId(0).Y, 0), 0);
-          var box = objetoSelecionado.Bbox();
-          box.Atualizar(null, new List<Ponto4D>() { objetoSelecionado.PontosId(0) });
-          foreach (var obstaculo in obstaculos) {
-            if (box.Dentro(obstaculo.PontosId(0))) {
-              Console.WriteLine("Bateu");
-              break;
-            }
-          }
-        }
+      if (input.IsKeyPressed(Keys.P) && objetoSelecionado != null)
+        System.Console.WriteLine(objetoSelecionado.ToString());
+
+      if (input.IsKeyDown(Keys.A) && objetoSelecionado != null) {
+        objetoSelecionado.MatrizTranslacaoXYZ(-0.0010, 0, 0);
+        RemoverDoMundo();
+      }
+      
+      if (input.IsKeyDown(Keys.D) && objetoSelecionado != null) {
+        objetoSelecionado.MatrizTranslacaoXYZ(0.0010, 0, 0);
+        RemoverDoMundo();
       }
 
-      if (input.IsKeyDown(Keys.D)) {
-        if (objetoSelecionado != null) {
-          objetoSelecionado.PontosAlterar(new Ponto4D(objetoSelecionado.PontosId(0).X + 0.0010, objetoSelecionado.PontosId(0).Y, 0), 0);
-          var box = objetoSelecionado.Bbox();
-          box.Atualizar(null, new List<Ponto4D>() { objetoSelecionado.PontosId(0) });
-          foreach (var obstaculo in obstaculos) {
-            if (box.Dentro(obstaculo.PontosId(0))) {
-              Console.WriteLine("Bateu");
-              break;
-            }
-          }
-        }
+      if (input.IsKeyDown(Keys.W) && objetoSelecionado != null) {
+        objetoSelecionado.MatrizTranslacaoXYZ(0, 0.0010, 0);
+        RemoverDoMundo();
+      }
+
+      if (input.IsKeyDown(Keys.S) && objetoSelecionado != null) {
+        objetoSelecionado.MatrizTranslacaoXYZ(0, -0.0010, 0);
+        RemoverDoMundo();
       }
 
       if (input.IsKeyDown(Keys.Enter)) {
@@ -195,61 +181,16 @@ namespace gcgcg
             var x = rnd.NextDouble();
             var y = rnd.NextDouble();
 
-            x = x * 2;
+            x = x * 5;
             if (rnd.Next(0, 2) == 1) {
               x *= -1;
             }
-            y = y * 20;
+            y = y * 25;
 
             obstaculo = new Ponto(mundo, ref rotuloObstaculo, new Ponto4D(x, y));
             obstaculos.Add(obstaculo);
           }
       }
-      // if (input.IsKeyPressed(Keys.Space))
-      // {
-      //   if (objetoSelecionado == null)
-      //     objetoSelecionado = mundo;
-      //   objetoSelecionado.shaderCor = _shaderBranca;
-      //   objetoSelecionado = mundo.GrafocenaBuscaProximo(objetoSelecionado);
-      //   objetoSelecionado.shaderCor = _shaderAmarela;
-      // }
-      // if (input.IsKeyPressed(Keys.G))
-      //   mundo.GrafocenaImprimir("");
-      // if (input.IsKeyPressed(Keys.P) && objetoSelecionado != null)
-      //   System.Console.WriteLine(objetoSelecionado.ToString());
-      // if (input.IsKeyPressed(Keys.M) && objetoSelecionado != null)
-      //   objetoSelecionado.MatrizImprimir();
-      // if (input.IsKeyPressed(Keys.I) && objetoSelecionado != null)
-      //   objetoSelecionado.MatrizAtribuirIdentidade();
-      // if (input.IsKeyPressed(Keys.Left) && objetoSelecionado != null)
-      //   objetoSelecionado.MatrizTranslacaoXYZ(-0.05, 0, 0);
-      // if (input.IsKeyPressed(Keys.Right) && objetoSelecionado != null)
-      //   objetoSelecionado.MatrizTranslacaoXYZ(0.05, 0, 0);
-      // if (input.IsKeyPressed(Keys.Up) && objetoSelecionado != null)
-      //   objetoSelecionado.MatrizTranslacaoXYZ(0, 0.05, 0);
-      // if (input.IsKeyPressed(Keys.Down) && objetoSelecionado != null)
-      //   objetoSelecionado.MatrizTranslacaoXYZ(0, -0.05, 0);
-      // if (input.IsKeyPressed(Keys.O) && objetoSelecionado != null)
-      //   objetoSelecionado.MatrizTranslacaoXYZ(0, 0, 0.05);
-      // if (input.IsKeyPressed(Keys.L) && objetoSelecionado != null)
-      //   objetoSelecionado.MatrizTranslacaoXYZ(0, 0, -0.05);
-      // if (input.IsKeyPressed(Keys.PageUp) && objetoSelecionado != null)
-      //   objetoSelecionado.MatrizEscalaXYZ(2, 2, 2);
-      // if (input.IsKeyPressed(Keys.PageDown) && objetoSelecionado != null)
-      //   objetoSelecionado.MatrizEscalaXYZ(0.5, 0.5, 0.5);
-      // if (input.IsKeyPressed(Keys.Home) && objetoSelecionado != null)
-      //   objetoSelecionado.MatrizEscalaXYZBBox(0.5, 0.5, 0.5);
-      // if (input.IsKeyPressed(Keys.End) && objetoSelecionado != null)
-      //   objetoSelecionado.MatrizEscalaXYZBBox(2, 2, 2);
-      // if (input.IsKeyPressed(Keys.D1) && objetoSelecionado != null)
-      //   objetoSelecionado.MatrizRotacao(10);
-      // if (input.IsKeyPressed(Keys.D2) && objetoSelecionado != null)
-      //   objetoSelecionado.MatrizRotacao(-10);
-      // if (input.IsKeyPressed(Keys.D3) && objetoSelecionado != null)
-      //   objetoSelecionado.MatrizRotacaoZBBox(10);
-      // if (input.IsKeyPressed(Keys.D4) && objetoSelecionado != null)
-      //   objetoSelecionado.MatrizRotacaoZBBox(-10);
-
       const float cameraSpeed = 1.5f;
       if (input.IsKeyDown(Keys.Z))
         _camera.Position = Vector3.UnitZ*5;
@@ -261,23 +202,10 @@ namespace gcgcg
         _camera.Position -= _camera.Right * cameraSpeed * (float)e.Time; // Left
       if (input.IsKeyDown(Keys.D))
         _camera.Position += _camera.Right * cameraSpeed * (float)e.Time; // Right
-      if (input.IsKeyDown(Keys.RightShift))
+      if (input.IsKeyDown(Keys.W))
         _camera.Position += _camera.Up * cameraSpeed * (float)e.Time; // Up
-      if (input.IsKeyDown(Keys.LeftShift))
+      if (input.IsKeyDown(Keys.S))
         _camera.Position -= _camera.Up * cameraSpeed * (float)e.Time; // Down
-      if (input.IsKeyDown(Keys.W)) {
-        var box = objetoSelecionado.Bbox();
-
-        objetoSelecionado.PontosAlterar(new Ponto4D(objetoSelecionado.PontosId(0).X, objetoSelecionado.PontosId(0).Y + 0.0010, 0), 0);
-        box.Atualizar(null, new List<Ponto4D>() { objetoSelecionado.PontosId(0) });
-        _camera.Position += _camera.Up * cameraSpeed * (float)e.Time; // Up
-        for (var i = 0; i < 100; i++) {
-            if (box.Dentro(obstaculo.PontosId(0))) {
-              Console.WriteLine("Bateu");
-              break;
-            }
-        }
-      }
       if (input.IsKeyDown(Keys.D0))
         _camera.Position -= _camera.Up * cameraSpeed * (float)e.Time; // Down
 

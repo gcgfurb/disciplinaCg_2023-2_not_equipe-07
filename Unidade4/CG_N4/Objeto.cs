@@ -92,6 +92,8 @@ namespace gcgcg
       GL.BindVertexArray(_vertexArrayObject);
       GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 0);
       GL.EnableVertexAttribArray(0);
+
+      bBox.Atualizar(matriz,pontosLista);
     }
 
     // FIXME: quando Classe mundo for Singleton não precisa passar _camera pois posso pegar ponteiro do mundo.
@@ -151,6 +153,10 @@ namespace gcgcg
     {
       pontosLista[posicao] = pto;
       ObjetoAtualizar();
+    }
+
+    public void RemoverFilho(Objeto filho) {
+      this.objetosLista.Remove(filho);
     }
 
     #endregion
